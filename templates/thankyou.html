@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f8f9fa; }
+        .thankyou-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #bde0ff;
+            border-radius: 10px;
+            padding: 32px 24px 24px 24px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+        .form-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #383137;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin: 20px 0;
+        }
+        .ticket-details {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="thankyou-container">
+        <div class="form-title">Thank You!</div>
+        
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+        </div>
+        
+        <p class="lead">Your payment has been successfully processed!</p>
+        <p>A confirmation has been sent to your email.</p>
+        
+        <div class="ticket-details">
+            <h5>Ticket Details:</h5>
+            <div class="detail-item">
+                <span>Booking ID:</span>
+                <span>{{ booking.id }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Movie:</span>
+                <span>{{ booking.movie_name }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Date:</span>
+                <span>{{ booking.date }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Seat Type:</span>
+                <span>{{ booking.seat_type }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Amount Paid:</span>
+                <span>{{ booking.price | format_number }} VND</span>
+            </div>
+        </div>
+        
+        <div class="qr-placeholder">
+            <p class="text-muted">Ticket QR Code</p>
+        </div>
+        
+        <p>Please show this QR code at the cinema entrance.</p>
+        
+        <div class="mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Home</a>
+            <a href="#" class="btn btn-outline-secondary ms-2" onclick="window.print()">Print Ticket</a>
+        </div>
+    </div>
+</body>
+</html>
